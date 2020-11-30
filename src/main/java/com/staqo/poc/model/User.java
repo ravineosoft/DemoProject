@@ -6,7 +6,6 @@ package com.staqo.poc.model;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,10 +15,6 @@ import javax.persistence.Transient;
 
 import com.sun.istack.NotNull;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
 /**
@@ -29,36 +24,35 @@ import lombok.ToString;
 @Entity
 @Table(name = "GuestUser")
 @ToString
-//@Getter @Setter @NoArgsConstructor @AllArgsConstructor
+//@Getter @Setter @NoArgsConstructor @AllArgsConstructor //Lombok
 public class User implements Serializable {
-    
-    /**
+
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1284070321665073971L;
-	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    
-    @NotNull
-    private String firstName;
-    
+	private Long id;
 
-    @NotNull
-    private String lastName;
-    
-    @NotNull
-    private String phoneNumber;
-    
-    @NotNull
-    private String email;
- 
-    
-    private String photo;
-    
-    private Date createdDate;
+	@NotNull
+	private String firstName;
+
+	@NotNull
+	private String lastName;
+
+	@NotNull
+	private String phoneNumber;
+
+	@NotNull
+	private String email;
+
+	private String photo;
+
+	private Date createdDate;
+
+	private Boolean active;
 
 	public Long getId() {
 		return id;
@@ -103,14 +97,13 @@ public class User implements Serializable {
 	public String getPhoto() {
 		return photo;
 	}
-	
-	 @Transient
-	 public String getPhotosImagePath() {
-	        if (this.photo == null || id == null) return null;
-	        return "/user-photos/" + id + "/" + photo;
-	 }
-	
-	
+
+	@Transient
+	public String getPhotosImagePath() {
+		if (this.photo == null || id == null)
+			return null;
+		return "/user-photos/" + id + "/" + photo;
+	}
 
 	public void setPhoto(String photo) {
 		this.photo = photo;
@@ -123,6 +116,14 @@ public class User implements Serializable {
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
+	
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -133,9 +134,6 @@ public class User implements Serializable {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", phoneNumber=" + phoneNumber
 				+ ", email=" + email + ", photo=" + photo + ", createdDate=" + createdDate + "]";
 	}
-      
-	
-    
-    
-    // standard constructors / setters / getters / toString
+
+	// standard constructors / setters / getters / toString
 }

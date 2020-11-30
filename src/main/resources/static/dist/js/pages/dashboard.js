@@ -7,6 +7,10 @@ $(function () {
 
 function deleteUser(id){
 	    alert("Delete id : " + id);
+	    
+	    $("#uid").val(id);
+	
+	    $("#delete-guest-form").submit();
 	
 }
 
